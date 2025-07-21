@@ -9,7 +9,7 @@ const services = [
     description: "Full-stack web applications built with modern technologies like React, Node.js, and PostgreSQL. Custom solutions tailored to your business needs.",
     icon: "ri-computer-line",
     features: ["Custom Frontend Development", "Backend API Design", "Database Architecture", "Responsive Design", "Performance Optimization"],
-    startingPrice: "Ksh 25,000"
+    startingPrice: "Ksh 15,000"
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ const services = [
     description: "Complete e-commerce platforms with payment integration, inventory management, and admin dashboards for online businesses.",
     icon: "ri-shopping-cart-line",
     features: ["Payment Gateway Integration", "Inventory Management", "Order Processing", "Customer Management", "Analytics Dashboard"],
-    startingPrice: "Ksh 50,000"
+    startingPrice: "Ksh 30,000"
   },
   {
     id: 3,
@@ -41,7 +41,7 @@ const services = [
     description: "Technical consulting for system architecture, technology stack selection, and scalability planning for growing businesses.",
     icon: "ri-settings-3-line",
     features: ["Architecture Planning", "Technology Selection", "Scalability Assessment", "Security Audit", "Performance Review"],
-    startingPrice: "Ksh 15000/hour"
+    startingPrice: "Ksh 10,000/hour"
   },
   {
     id: 6,
@@ -49,7 +49,7 @@ const services = [
     description: "Ongoing maintenance, updates, and technical support for existing applications to ensure optimal performance and security.",
     icon: "ri-tools-line",
     features: ["Regular Updates", "Bug Fixes", "Security Patches", "Performance Monitoring", "24/7 Support"],
-    startingPrice: "Ksh 80000/month"
+    startingPrice: "Ksh 15,000/month"
   }
 ];
 
