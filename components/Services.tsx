@@ -9,7 +9,7 @@ const services = [
     description: "Full-stack web applications built with modern technologies like React, Node.js, and PostgreSQL. Custom solutions tailored to your business needs.",
     icon: "ri-computer-line",
     features: ["Custom Frontend Development", "Backend API Design", "Database Architecture", "Responsive Design", "Performance Optimization"],
-    startingPrice: "Ksh 15,000"
+    startingPrice: "Ksh 20,000"
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ const services = [
     description: "Complete e-commerce platforms with payment integration, inventory management, and admin dashboards for online businesses.",
     icon: "ri-shopping-cart-line",
     features: ["Payment Gateway Integration", "Inventory Management", "Order Processing", "Customer Management", "Analytics Dashboard"],
-    startingPrice: "Ksh 30,000"
+    startingPrice: "Ksh 50,000"
   },
   {
     id: 3,
@@ -33,7 +33,7 @@ const services = [
     description: "RESTful APIs and third-party integrations to connect your systems and enhance functionality with external services.",
     icon: "ri-plug-line",
     features: ["REST API Development", "Third-party Integrations", "Authentication Systems", "Documentation", "Rate Limiting"],
-    startingPrice: "Ksh 30,000"
+    startingPrice: "Ksh 50,000"
   },
   {
     id: 5,
