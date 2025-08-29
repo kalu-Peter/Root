@@ -54,7 +54,7 @@ export default function About() {
       </div>
       <div className="mt-16 text-center">
         <a
-          href="/Peter Kalu resume.pdf"
+          href="/Peter Lugo resume.pdf"
           className="inline-block bg-blue-600 text-white text-lg font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-blue-700 transition-all duration-200"
         >
           Download My Resume
