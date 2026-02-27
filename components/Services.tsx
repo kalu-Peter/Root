@@ -15,7 +15,7 @@ const services = [
       "Responsive Design",
       "Performance Optimization",
     ],
-    startingPrice: "Ksh 40,000",
+    startingPrice: "Ksh 30,000",
   },
   {
     id: 2,
@@ -49,21 +49,6 @@ const services = [
   },
   {
     id: 4,
-    title: "API Development & Integration",
-    description:
-      "RESTful APIs and third-party integrations to connect your systems and enhance functionality with external services.",
-    icon: "ri-plug-line",
-    features: [
-      "REST API Development",
-      "Third-party Integrations",
-      "Authentication Systems",
-      "Documentation",
-      "Rate Limiting",
-    ],
-    startingPrice: "Ksh 60,000",
-  },
-  {
-    id: 5,
     title: "System Architecture Consulting",
     description:
       "Technical consulting for system architecture, technology stack selection, and scalability planning for growing businesses.",
@@ -78,7 +63,7 @@ const services = [
     startingPrice: "Ksh 20,000/hour",
   },
   {
-    id: 6,
+    id: 5,
     title: "Maintenance & Support",
     description:
       "Ongoing maintenance, updates, and technical support for existing applications to ensure optimal performance and security.",
@@ -90,7 +75,7 @@ const services = [
       "Performance Monitoring",
       "24/7 Support",
     ],
-    startingPrice: "Ksh 20,000/month",
+    startingPrice: "Ksh 10,000/month",
   },
 ];
 
