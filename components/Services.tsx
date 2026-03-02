@@ -15,7 +15,7 @@ const services = [
       "Responsive Design",
       "Performance Optimization",
     ],
-    startingPrice: "Ksh 30,000",
+    startingPrice: "Ksh 40,000",
   },
   {
     id: 2,
