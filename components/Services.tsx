@@ -1,121 +1,117 @@
-"use client";
-import { useState } from "react";
+'use client';
+import { useEffect, useRef, useState } from 'react';
 
 const services = [
   {
     id: 1,
-    title: "Web Application Development",
-    description:
-      "Full-stack web applications built with modern technologies like React, Node.js, and PostgreSQL. Custom solutions tailored to your business needs.",
-    icon: "ri-computer-line",
-    features: [
-      "Custom Frontend Development",
-      "Backend API Design",
-      "Database Architecture",
-      "Responsive Design",
-      "Performance Optimization",
-    ],
-    startingPrice: "Ksh 40,000",
+    title: 'Web Application Development',
+    description: 'Full-stack web applications built with modern technologies like React, Node.js, and PostgreSQL. Custom solutions tailored to your business needs.',
+    icon: 'ri-computer-line',
+    features: ['Custom Frontend Development', 'Backend API Design', 'Database Architecture', 'Responsive Design', 'Performance Optimization'],
+    startingPrice: 'Ksh 40,000',
+    color: '#6366f1',
   },
   {
     id: 2,
-    title: "E-Commerce Solutions",
-    description:
-      "Complete e-commerce platforms with payment integration, inventory management, and admin dashboards for online businesses.",
-    icon: "ri-shopping-cart-line",
-    features: [
-      "Payment Gateway Integration",
-      "Inventory Management",
-      "Order Processing",
-      "Customer Management",
-      "Analytics Dashboard",
-    ],
-    startingPrice: "Ksh 50,000",
+    title: 'E-Commerce Solutions',
+    description: 'Complete e-commerce platforms with payment integration, inventory management, and admin dashboards for online businesses.',
+    icon: 'ri-shopping-cart-line',
+    features: ['Payment Gateway Integration', 'Inventory Management', 'Order Processing', 'Customer Management', 'Analytics Dashboard'],
+    startingPrice: 'Ksh 50,000',
+    color: '#8b5cf6',
   },
   {
     id: 3,
-    title: "Database Design & Development",
-    description:
-      "PostgreSQL database design, optimization, and migration services. Efficient data structures for scalable applications.",
-    icon: "ri-database-2-line",
-    features: [
-      "Database Schema Design",
-      "Query Optimization",
-      "Data Migration",
-      "Backup Solutions",
-      "Performance Tuning",
-    ],
-    startingPrice: "Ksh 50,000",
+    title: 'Database Design & Development',
+    description: 'PostgreSQL database design, optimization, and migration services. Efficient data structures for scalable applications.',
+    icon: 'ri-database-2-line',
+    features: ['Database Schema Design', 'Query Optimization', 'Data Migration', 'Backup Solutions', 'Performance Tuning'],
+    startingPrice: 'Ksh 50,000',
+    color: '#06b6d4',
   },
   {
     id: 4,
-    title: "Maintenance & Support",
-    description:
-      "Ongoing maintenance, updates, and technical support for existing applications to ensure optimal performance and security.",
-    icon: "ri-tools-line",
-    features: [
-      "Regular Updates",
-      "Bug Fixes",
-      "Security Patches",
-      "Performance Monitoring",
-      "24/7 Support",
-    ],
-    startingPrice: "Ksh 10,000/month",
+    title: 'Maintenance & Support',
+    description: 'Ongoing maintenance, updates, and technical support for existing applications to ensure optimal performance and security.',
+    icon: 'ri-tools-line',
+    features: ['Regular Updates', 'Bug Fixes', 'Security Patches', 'Performance Monitoring', '24/7 Support'],
+    startingPrice: 'Ksh 10,000/month',
+    color: '#10b981',
   },
 ];
 
+interface Service {
+  id: number; title: string; description: string; icon: string;
+  features: string[]; startingPrice: string; color: string;
+}
+
 export default function Services() {
-  interface Service {
-    id: number;
-    title: string;
-    description: string;
-    icon: string;
-    features: string[];
-    startingPrice: string;
-  }
-  const [selectedService, setSelectedService] = useState<Service | null>(null);
+  const [selected, setSelected] = useState<Service | null>(null);
+  const [vis, setVis] = useState(false);
+  const ref = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setVis(true); obs.disconnect(); } }, { threshold: 0.08 });
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, []);
 
   return (
-    <section id="services" className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Development Services
+    <section id="services" ref={ref} className="py-24 bg-[#060611] relative overflow-hidden">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-64 bg-indigo-600/6 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div
+          className="text-center mb-16"
+          style={{ opacity: vis ? 1 : 0, transform: vis ? 'none' : 'translateY(30px)', transition: 'all 0.7s ease' }}
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-sm mb-5">
+            <i className="ri-briefcase-line" />
+            Services
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-5">
+            Development <span className="gradient-text">Services</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Comprehensive development services to bring your digital projects to
-            life. From concept to deployment, I provide end-to-end solutions for
-            your business needs.
+          <p className="text-gray-400 max-w-2xl mx-auto text-base">
+            Comprehensive development services to bring your digital projects to life — from concept to deployment.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {services.map((svc, i) => (
             <div
-              key={service.id}
-              className="bg-white border border-gray-200 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 cursor-pointer group"
-              onClick={() => setSelectedService(service)}
+              key={svc.id}
+              onClick={() => setSelected(svc)}
+              className="group glass rounded-2xl p-8 border border-white/5 cursor-pointer shimmer-card transition-all duration-300 hover:-translate-y-2 relative overflow-hidden"
+              style={{
+                opacity: vis ? 1 : 0,
+                transform: vis ? 'none' : 'translateY(40px)',
+                transition: `opacity 0.7s ease ${i * 0.1}s, transform 0.7s ease ${i * 0.1}s, box-shadow 0.3s`,
+              }}
+              onMouseEnter={e => (e.currentTarget.style.boxShadow = `0 20px 50px ${svc.color}18`)}
+              onMouseLeave={e => (e.currentTarget.style.boxShadow = 'none')}
             >
-              <div className="w-16 h-16 bg-gray-900 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-gray-800 transition-colors">
-                <i className={`${service.icon} text-white text-2xl`}></i>
-              </div>
+              {/* Accent top border */}
+              <div
+                className="absolute top-0 left-0 right-0 h-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{ background: `linear-gradient(90deg, transparent, ${svc.color}, transparent)` }}
+              />
 
-              <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-gray-700 transition-colors">
-                {service.title}
-              </h3>
-
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                {service.description}
-              </p>
-
-              <div className="flex items-center justify-between">
-                <span className="text-2xl font-bold text-gray-900">
-                  {service.startingPrice}
-                </span>
-                <div className="flex items-center text-gray-600 group-hover:text-gray-900 transition-colors">
-                  <span className="text-sm mr-2">Learn More</span>
-                  <div className="w-4 h-4 flex items-center justify-center">
-                    <i className="ri-arrow-right-line"></i>
+              <div className="flex items-start gap-5">
+                <div
+                  className="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
+                  style={{ background: `${svc.color}15`, border: `1px solid ${svc.color}30` }}
+                >
+                  <i className={`${svc.icon} text-2xl`} style={{ color: svc.color }} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-gray-100">{svc.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed mb-4">{svc.description}</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xl font-bold text-white">{svc.startingPrice}</span>
+                    <span className="flex items-center gap-1 text-sm text-gray-500 group-hover:text-indigo-400 transition-colors duration-200">
+                      Details <i className="ri-arrow-right-line group-hover:translate-x-1 transition-transform duration-200 inline-block" />
+                    </span>
                   </div>
                 </div>
               </div>
@@ -123,83 +119,82 @@ export default function Services() {
           ))}
         </div>
 
-        {selectedService && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-              <div className="p-8">
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center">
-                    <div className="w-12 h-12 bg-gray-900 rounded-xl flex items-center justify-center mr-4">
-                      <i
-                        className={`${selectedService.icon} text-white text-xl`}
-                      ></i>
-                    </div>
-                    <h3 className="text-2xl font-bold text-gray-900">
-                      {selectedService.title}
-                    </h3>
+        {/* CTA */}
+        <div
+          className="mt-14 text-center glass rounded-2xl p-12 border border-white/5"
+          style={{ opacity: vis ? 1 : 0, transform: vis ? 'none' : 'translateY(30px)', transition: 'all 0.7s ease 0.4s' }}
+        >
+          <h3 className="text-3xl font-bold text-white mb-3">Need Something Custom?</h3>
+          <p className="text-gray-400 mb-8 max-w-xl mx-auto text-base">
+            Every project is unique. Let's discuss your requirements and create a tailored solution.
+          </p>
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 gradient-bg text-white px-8 py-4 rounded-full font-semibold text-base shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 hover:scale-105 transition-all duration-300"
+          >
+            Schedule a Consultation
+            <i className="ri-arrow-right-line" />
+          </a>
+        </div>
+      </div>
+
+      {/* Modal */}
+      {selected && (
+        <div
+          className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+          onClick={() => setSelected(null)}
+        >
+          <div
+            className="glass-dark rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto border border-white/10 shadow-2xl"
+            onClick={e => e.stopPropagation()}
+          >
+            <div className="p-8">
+              {/* Header */}
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: `${selected.color}15`, border: `1px solid ${selected.color}30` }}>
+                    <i className={`${selected.icon} text-xl`} style={{ color: selected.color }} />
                   </div>
-                  <button
-                    onClick={() => setSelectedService(null)}
-                    className="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-gray-700 cursor-pointer"
-                  >
-                    <i className="ri-close-line text-xl"></i>
-                  </button>
+                  <h3 className="text-xl font-bold text-white">{selected.title}</h3>
                 </div>
+                <button onClick={() => setSelected(null)} className="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-white transition-colors cursor-pointer">
+                  <i className="ri-close-line text-xl" />
+                </button>
+              </div>
 
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  {selectedService.description}
-                </p>
+              <p className="text-gray-400 mb-6 text-sm leading-relaxed">{selected.description}</p>
 
-                <div className="mb-6">
-                  <h4 className="text-lg font-semibold text-gray-900 mb-4">
-                    What's Included:
-                  </h4>
-                  <ul className="space-y-3">
-                    {selectedService.features.map((feature, index) => (
-                      <li key={index} className="flex items-center">
-                        <div className="w-5 h-5 flex items-center justify-center mr-3">
-                          <i className="ri-check-line text-green-600"></i>
-                        </div>
-                        <span className="text-gray-700">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
+              <div className="mb-6">
+                <h4 className="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-4">What's Included</h4>
+                <ul className="space-y-3">
+                  {selected.features.map((f, i) => (
+                    <li key={i} className="flex items-center gap-3 text-gray-400 text-sm">
+                      <span className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: `${selected.color}20` }}>
+                        <i className="ri-check-line text-xs" style={{ color: selected.color }} />
+                      </span>
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="flex items-center justify-between pt-6 border-t border-white/8">
+                <div>
+                  <span className="text-xs text-gray-600 uppercase tracking-wider">Starting from</span>
+                  <div className="text-2xl font-bold text-white mt-0.5">{selected.startingPrice}</div>
                 </div>
-
-                <div className="flex items-center justify-between pt-6 border-t border-gray-200">
-                  <div>
-                    <span className="text-sm text-gray-500">Starting from</span>
-                    <div className="text-3xl font-bold text-gray-900">
-                      {selectedService.startingPrice}
-                    </div>
-                  </div>
-                  <button className="bg-gray-900 text-white px-8 py-3 rounded-full hover:bg-gray-800 transition-colors cursor-pointer whitespace-nowrap">
-                    Get Quote
-                  </button>
-                </div>
+                <a
+                  href="#contact"
+                  onClick={() => setSelected(null)}
+                  className="gradient-bg text-white px-6 py-3 rounded-full font-semibold text-sm hover:scale-105 transition-transform duration-300 shadow-lg"
+                >
+                  Get Quote
+                </a>
               </div>
             </div>
           </div>
-        )}
-
-        <div className="mt-16 text-center">
-          <div className="bg-gray-50 rounded-2xl p-12">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">
-              Need Something Custom?
-            </h3>
-            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-              Every project is unique. Let's discuss your specific requirements
-              and create a tailored solution that fits your needs perfectly.
-            </p>
-            <a
-              href="#contact"
-              className="bg-gray-900 text-white px-8 py-4 rounded-full hover:bg-gray-800 transition-colors cursor-pointer whitespace-nowrap text-lg font-semibold inline-block"
-            >
-              Schedule a Consultation
-            </a>
-          </div>
         </div>
-      </div>
+      )}
     </section>
   );
 }

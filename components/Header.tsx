@@ -1,69 +1,93 @@
-
 'use client';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+const navLinks = [
+  { href: '/',         label: 'Home'     },
+  { href: '#about',    label: 'About'    },
+  { href: '#projects', label: 'Projects' },
+  { href: '#skills',   label: 'Skills'   },
+  { href: '#services', label: 'Services' },
+  { href: '#contact',  label: 'Contact'  },
+];
 
 export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md z-50 border-b border-gray-100">
+    <header
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
+      style={{
+        background: scrolled ? 'rgba(3,7,18,0.85)' : 'transparent',
+        backdropFilter: scrolled ? 'blur(20px)' : 'none',
+        borderBottom: scrolled ? '1px solid rgba(255,255,255,0.06)' : '1px solid transparent',
+      }}
+    >
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="text-2xl font-bold text-gray-900 font-pacifico">
+          {/* Logo */}
+          <Link href="/" className="font-pacifico text-2xl text-white hover:opacity-80 transition-opacity duration-200">
             Peter Kalu
           </Link>
-          
-          <nav className="hidden md:flex items-center space-x-8">
-            <Link href="/" className="text-gray-700 hover:text-gray-900 transition-colors cursor-pointer whitespace-nowrap">
-              Home
-            </Link>
-            <Link href="#about" className="text-gray-700 hover:text-gray-900 transition-colors cursor-pointer whitespace-nowrap">
-              About
-            </Link>
-            <Link href="#projects" className="text-gray-700 hover:text-gray-900 transition-colors cursor-pointer whitespace-nowrap">
-              Projects
-            </Link>
-            <Link href="#skills" className="text-gray-700 hover:text-gray-900 transition-colors cursor-pointer whitespace-nowrap">
-              Skills
-            </Link>
-            <Link href="#services" className="text-gray-700 hover:text-gray-900 transition-colors cursor-pointer whitespace-nowrap">
-              Services
-            </Link>
-            <Link href="#contact" className="text-gray-700 hover:text-gray-900 transition-colors cursor-pointer whitespace-nowrap">
-              Contact
-            </Link>
+
+          {/* Desktop nav */}
+          <nav className="hidden md:flex items-center gap-1">
+            {navLinks.map(link => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="relative px-4 py-2 text-sm text-gray-400 hover:text-white transition-colors duration-200 rounded-lg hover:bg-white/5 group"
+              >
+                {link.label}
+                <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-indigo-500 to-violet-500 group-hover:w-4 transition-all duration-300 rounded-full" />
+              </Link>
+            ))}
+            <a
+              href="#contact"
+              className="ml-3 px-5 py-2 rounded-full text-sm font-semibold gradient-bg text-white shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/40 hover:scale-105 transition-all duration-300"
+            >
+              Hire Me
+            </a>
           </nav>
 
+          {/* Mobile burger */}
           <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden w-6 h-6 flex items-center justify-center cursor-pointer"
+            onClick={() => setMenuOpen(v => !v)}
+            className="md:hidden w-9 h-9 flex items-center justify-center text-gray-300 hover:text-white transition-colors cursor-pointer rounded-lg hover:bg-white/5"
+            aria-label="Toggle menu"
           >
-            <i className={`ri-${isMenuOpen ? 'close' : 'menu'}-line text-xl`}></i>
+            <i className={`${menuOpen ? 'ri-close-line' : 'ri-menu-line'} text-xl`} />
           </button>
         </div>
 
-        {isMenuOpen && (
-          <nav className="md:hidden mt-4 pb-4 border-t border-gray-100 pt-4">
-            <div className="flex flex-col space-y-3">
-              <Link href="/" className="text-gray-700 hover:text-gray-900 transition-colors cursor-pointer">
-                Home
-              </Link>
-              <Link href="#about" className="text-gray-700 hover:text-gray-900 transition-colors cursor-pointer">
-                About
-              </Link>
-              <Link href="#projects" className="text-gray-700 hover:text-gray-900 transition-colors cursor-pointer">
-                Projects
-              </Link>
-              <Link href="#skills" className="text-gray-700 hover:text-gray-900 transition-colors cursor-pointer">
-                Skills
-              </Link>
-              <Link href="#services" className="text-gray-700 hover:text-gray-900 transition-colors cursor-pointer">
-                Services
-              </Link>
-              <Link href="#contact" className="text-gray-700 hover:text-gray-900 transition-colors cursor-pointer">
-                Contact
-              </Link>
+        {/* Mobile menu */}
+        {menuOpen && (
+          <nav className="md:hidden mt-4 pb-4 border-t border-white/8 pt-4">
+            <div className="flex flex-col gap-1">
+              {navLinks.map(link => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="px-4 py-2.5 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200 text-sm"
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <a
+                href="#contact"
+                onClick={() => setMenuOpen(false)}
+                className="mt-2 px-5 py-2.5 rounded-full text-sm font-semibold gradient-bg text-white text-center"
+              >
+                Hire Me
+              </a>
             </div>
           </nav>
         )}
