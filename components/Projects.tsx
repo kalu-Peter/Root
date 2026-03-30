@@ -8,8 +8,6 @@ const projects = [
     description: 'Comprehensive school management platform with student enrollment, grade tracking, attendance management, and parent-teacher communication features.',
     image: 'https://readdy.ai/api/search-image?query=Modern%20school%20management%20system%20dashboard%20interface%20showing%20student%20records%2C%20class%20schedules%2C%20grade%20management%2C%20clean%20educational%20software%20design%20with%20organized%20layout%20and%20professional%20appearance&width=600&height=400&seq=project-1&orientation=landscape',
     technologies: ['React', 'Node.js', 'PostgreSQL', 'TypeScript', 'Tailwind CSS'],
-    liveUrl: '#',
-    githubUrl: '#',
     accent: '#6366f1',
   },
   {
@@ -18,8 +16,6 @@ const projects = [
     description: 'Advanced procurement platform with vendor management, purchase order processing, inventory tracking, and approval workflows for streamlined business operations.',
     image: 'https://readdy.ai/api/search-image?query=Business%20procurement%20system%20dashboard%20showing%20vendor%20management%2C%20purchase%20orders%2C%20inventory%20tracking%2C%20professional%20business%20software%20interface%20with%20charts%20and%20organized%20data%20presentation&width=600&height=400&seq=project-3&orientation=landscape',
     technologies: ['React', 'PHP', 'PostgreSQL', 'JavaScript', 'Docker'],
-    liveUrl: '#',
-    githubUrl: '#',
     accent: '#8b5cf6',
   },
   {
@@ -28,8 +24,6 @@ const projects = [
     description: 'Full-featured online store with product catalog, shopping cart, payment processing, order management, and customer dashboard for complete e-commerce experience.',
     image: 'https://readdy.ai/api/search-image?query=Modern%20e-commerce%20website%20interface%20showing%20product%20listings%2C%20shopping%20cart%2C%20payment%20integration%2C%20online%20store%20design%20with%20clean%20layout%20and%20professional%20e-commerce%20elements&width=600&height=400&seq=project-4&orientation=landscape',
     technologies: ['Next.js', 'Node.js', 'TypeScript', 'AWS'],
-    liveUrl: 'https://kalu-peter.github.io/Ecom/',
-    githubUrl: 'https://github.com/kalu-Peter/Ecom',
     accent: '#06b6d4',
   },
   {
@@ -38,8 +32,6 @@ const projects = [
     description: 'Efficient clinic management solution with patient appointments, medical records, prescription management, and billing system for small to medium healthcare facilities.',
     image: 'https://readdy.ai/api/search-image?query=Clean%20clinic%20management%20software%20interface%20with%20appointment%20scheduling%2C%20patient%20records%2C%20medical%20forms%2C%20small%20healthcare%20facility%20dashboard%20with%20organized%20medical%20information%20display&width=600&height=400&seq=project-5&orientation=landscape',
     technologies: ['React', 'Node.js', 'PostgreSQL', 'JavaScript', 'Tailwind CSS'],
-    liveUrl: '#',
-    githubUrl: '#',
     accent: '#10b981',
   },
   {
@@ -48,9 +40,16 @@ const projects = [
     description: 'Agricultural management platform with crop tracking, livestock management, weather integration, and farm analytics for modern farming operations.',
     image: 'https://readdy.ai/api/search-image?query=Agricultural%20farm%20management%20website%20with%20crop%20tracking%20dashboard%2C%20livestock%20records%2C%20weather%20data%2C%20farming%20technology%20interface%20with%20green%20agricultural%20theme%20and%20organized%20farm%20data%20presentation&width=600&height=400&seq=project-6&orientation=landscape',
     technologies: ['React', 'Node.js', 'JavaScript', 'Git'],
-    liveUrl: '#',
-    githubUrl: '#',
     accent: '#f59e0b',
+  },
+  {
+    id: 6,
+    title: 'Hotel Booking Website',
+    description: 'Full-featured hotel booking platform with room listings, availability calendar, online reservations, and guest management for Crocodile Lodge — a premium hospitality experience.',
+    image: 'https://readdy.ai/api/search-image?query=Luxury%20hotel%20booking%20website%20interface%20showing%20room%20listings%2C%20reservation%20calendar%2C%20hospitality%20design%20with%20elegant%20theme%20and%20professional%20hotel%20management%20layout&width=600&height=400&seq=project-7&orientation=landscape',
+    technologies: ['Next.js', 'TypeScript', 'Node.js', 'PostgreSQL', 'Tailwind CSS'],
+    liveUrl: 'https://crocodilelodge.co.ke/',
+    accent: '#f43f5e',
   },
 ];
 
@@ -130,22 +129,19 @@ export default function Projects() {
                   ))}
                 </div>
 
-                <div className="flex items-center gap-5 pt-4 border-t border-white/5">
-                  <a
-                    href={p.liveUrl}
-                    className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-white transition-colors duration-200"
-                  >
-                    <i className="ri-external-link-line" />
-                    Live Demo
-                  </a>
-                  <a
-                    href={p.githubUrl}
-                    className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-white transition-colors duration-200"
-                  >
-                    <i className="ri-github-line" />
-                    Source Code
-                  </a>
-                </div>
+                {p.liveUrl && (
+                  <div className="flex items-center gap-5 pt-4 border-t border-white/5">
+                    <a
+                      href={p.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-white transition-colors duration-200"
+                    >
+                      <i className="ri-external-link-line" />
+                      Visit Site
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
           ))}

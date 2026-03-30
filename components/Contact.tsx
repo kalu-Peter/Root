@@ -114,6 +114,8 @@ export default function Contact() {
                     key={i}
                     href={s.href}
                     aria-label={s.label}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-11 h-11 glass rounded-xl flex items-center justify-center text-gray-400 hover:text-white hover:border-indigo-500/40 border border-white/5 transition-all duration-300 hover:scale-110 hover:-translate-y-1"
                   >
                     <i className={s.icon} />
