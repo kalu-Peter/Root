@@ -12,15 +12,6 @@ const projects = [
     githubUrl: "#"
   },
   {
-    id: 2,
-    title: "Hospital Management System",
-    description: "Complete healthcare management solution with patient records, appointment scheduling, inventory management, and staff coordination features for efficient hospital operations.",
-    image: "https://readdy.ai/api/search-image?query=Professional%20hospital%20management%20system%20interface%20with%20patient%20records%2C%20appointment%20scheduling%2C%20medical%20dashboard%2C%20healthcare%20software%20design%20with%20clean%20medical%20theme%20and%20organized%20information%20display&width=600&height=400&seq=project-2&orientation=landscape",
-    technologies: ["Next.js", "TypeScript", "MongoDB", "Node.js", "React"],
-    liveUrl: "#",
-    githubUrl: "#"
-  },
-  {
     id: 3,
     title: "Procurement Management System",
     description: "Advanced procurement platform with vendor management, purchase order processing, inventory tracking, and approval workflows for streamlined business operations.",

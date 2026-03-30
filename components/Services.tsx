@@ -49,21 +49,6 @@ const services = [
   },
   {
     id: 4,
-    title: "System Architecture Consulting",
-    description:
-      "Technical consulting for system architecture, technology stack selection, and scalability planning for growing businesses.",
-    icon: "ri-settings-3-line",
-    features: [
-      "Architecture Planning",
-      "Technology Selection",
-      "Scalability Assessment",
-      "Security Audit",
-      "Performance Review",
-    ],
-    startingPrice: "Ksh 20,000/hour",
-  },
-  {
-    id: 5,
     title: "Maintenance & Support",
     description:
       "Ongoing maintenance, updates, and technical support for existing applications to ensure optimal performance and security.",

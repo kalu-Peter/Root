@@ -19,7 +19,6 @@ const skillCategories = [
     skills: [
       { name: "Node.js", level: 90 },
       { name: "PostgreSQL", level: 88 },
-      { name: "MongoDB", level: 85 },
       { name: "PHP", level: 82 },
       { name: "REST APIs", level: 93 }
     ]
