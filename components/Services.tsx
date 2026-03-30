@@ -107,8 +107,7 @@ export default function Services() {
                 <div className="flex-1 min-w-0">
                   <h3 className="text-xl font-bold text-white mb-2 group-hover:text-gray-100">{svc.title}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed mb-4">{svc.description}</p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-xl font-bold text-white">{svc.startingPrice}</span>
+                  <div className="flex items-center justify-end">
                     <span className="flex items-center gap-1 text-sm text-gray-500 group-hover:text-indigo-400 transition-colors duration-200">
                       Details <i className="ri-arrow-right-line group-hover:translate-x-1 transition-transform duration-200 inline-block" />
                     </span>
@@ -178,11 +177,7 @@ export default function Services() {
                 </ul>
               </div>
 
-              <div className="flex items-center justify-between pt-6 border-t border-white/8">
-                <div>
-                  <span className="text-xs text-gray-600 uppercase tracking-wider">Starting from</span>
-                  <div className="text-2xl font-bold text-white mt-0.5">{selected.startingPrice}</div>
-                </div>
+              <div className="flex items-center justify-end pt-6 border-t border-white/8">
                 <a
                   href="#contact"
                   onClick={() => setSelected(null)}
