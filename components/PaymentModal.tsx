@@ -49,7 +49,7 @@ export default function PaymentModal({ onClose }: Props) {
     }
   };
 
-  const inputClass = 'w-full px-4 py-3 bg-white/4 border border-white/8 rounded-xl text-white placeholder-gray-600 text-sm focus:outline-none focus:border-indigo-500/60 focus:bg-white/6 transition-all duration-200';
+  const inputClass = 'w-full px-4 py-3 bg-white border border-white/8 rounded-xl text-black placeholder-gray-400 text-sm focus:outline-none focus:border-indigo-500/60 transition-all duration-200';
 
   return (
     <div
