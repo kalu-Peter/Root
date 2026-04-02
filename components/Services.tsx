@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
+import PaymentModal from './PaymentModal';
 
 const services = [
   {
@@ -47,6 +48,7 @@ interface Service {
 
 export default function Services() {
   const [selected, setSelected] = useState<Service | null>(null);
+  const [payOpen, setPayOpen] = useState(false);
   const [vis, setVis] = useState(false);
   const ref = useRef<HTMLElement>(null);
 
@@ -127,17 +129,29 @@ export default function Services() {
           <p className="text-gray-400 mb-8 max-w-xl mx-auto text-base">
             Every project is unique. Let's discuss your requirements and create a tailored solution.
           </p>
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 gradient-bg text-white px-8 py-4 rounded-full font-semibold text-base shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 hover:scale-105 transition-all duration-300"
-          >
-            Schedule a Consultation
-            <i className="ri-arrow-right-line" />
-          </a>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 gradient-bg text-white px-8 py-4 rounded-full font-semibold text-base shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 hover:scale-105 transition-all duration-300"
+            >
+              Schedule a Consultation
+              <i className="ri-arrow-right-line" />
+            </a>
+            <button
+              onClick={() => setPayOpen(true)}
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-base text-white border border-green-500/30 bg-green-500/10 hover:bg-green-500/20 hover:border-green-500/50 hover:scale-105 transition-all duration-300 shadow-lg shadow-green-500/10"
+            >
+              <i className="ri-secure-payment-line" />
+              Pay via M-Pesa
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Modal */}
+      {/* Payment Modal */}
+      {payOpen && <PaymentModal onClose={() => setPayOpen(false)} />}
+
+      {/* Service Details Modal */}
       {selected && (
         <div
           className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4"
